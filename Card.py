@@ -1,0 +1,11 @@
+'''
+    Amer Sulieman
+    Card object that represent a card in a deck of cards
+'''
+class Card:
+    def __init__(self,suit,value):
+        self.suit=suit
+        self.value=value
+
+    def __str__(self):
+        return f"Suit: {self.suit}\tValue: {self.value}"
