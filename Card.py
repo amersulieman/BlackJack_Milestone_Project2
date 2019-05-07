@@ -8,4 +8,4 @@ class Card:
         self.value=value
 
     def __str__(self):
-        return f"Suit: {self.suit}\tValue: {self.value}"
+        return f"{self.value} of {self.suit}"

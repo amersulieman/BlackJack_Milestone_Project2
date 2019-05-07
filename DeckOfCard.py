@@ -3,12 +3,10 @@
     Uses composition of Card object
 '''
 from Card import Card
-from random import shuffle
 
 class DeckOfCards:
     #cards 4 kinds of suits
     suits = ["Clubs","Diamonds","Hearts","Spades"]
-    cardsAmnt = 52
     def __init__(self):
         self.deck=list()
 
@@ -30,9 +28,6 @@ class DeckOfCards:
             self.deck.append(queen)
             self.deck.append(king)
     def __len__(self):
-        return self.cardsAmnt
+        return len(self.deck)
         
-#create deck of cards
-deck = DeckOfCards()
-deck.createCards()
-shuffle(deck.deck)
+
