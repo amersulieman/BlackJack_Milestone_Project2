@@ -4,8 +4,8 @@
 from Player import Player
 from random import shuffle
 class GameActions:
-    PLAYER=1
-    COMPUTER=2
+    __PLAYER=1
+    __COMPUTER=2
     def __init__(self,player):
         self.computerCardSum=0
         self.player=player
@@ -13,13 +13,13 @@ class GameActions:
         shuffle(cards)
         self.player.cardSum=0
         #computer takes two cards
-        self.hit(cards,self.COMPUTER)
+        self.hit(cards,self.__COMPUTER)
         print(f"Computer has {self.hit(cards,True)} and Card2 is Hidden")
         #player takes two cards
         print(f"Player has {self.hit(cards)} and {self.hit(cards)}")
-    def hit(self,gameDeck,whoPlaying=PLAYER):
+    def hit(self,gameDeck,whoPlaying=__PLAYER):
         newCard = gameDeck.pop()
-        if whoPlaying==self.PLAYER:
+        if whoPlaying==self.__PLAYER:
             self.player.cardSum+=self.checkCardValue(newCard)
         else:
             self.computerCardSum+=self.checkCardValue(newCard)
@@ -40,6 +40,8 @@ class GameActions:
                 else: 
                     if value==11 or value ==1:
                         return value
-                    continue 
+                    print("Please choose appropriate number")
+                    continue #if player chose a number other than 1 or 11
+        #if card withdrawn a normal number
         else:
             return theCard.value
