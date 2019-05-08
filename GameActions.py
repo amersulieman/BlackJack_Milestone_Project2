@@ -1,7 +1,6 @@
 '''
     Class that represnt the game actions to be taken during the game
 '''
-from Player import Player
 from random import shuffle
 class GameActions:
     __PLAYER=1
