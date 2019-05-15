@@ -18,11 +18,11 @@ class Player:
                 continue
             else:
                 if self.bidAmount > self.bankRole:
-                    print(f"You own ${self.bankRole}, you cant bid ${self.bidAmount}")
+                    print(f"You own ${self.bankRole}, you can't bid ${self.bidAmount}")
                     continue
                 break
     def moneyOwn(self):
-        print(f"You own {self.bankRole} try not to lose it all!")
+        print(f"You own ${self.bankRole} try not to lose it all!")
     def collectWinnings(self):
         self.bankRole += self.bidAmount
     def giveUpLosts(self):
