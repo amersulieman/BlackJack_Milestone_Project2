@@ -9,7 +9,6 @@ class DeckOfCards:
     suits = ["Clubs","Diamonds","Hearts","Spades"]
     def __init__(self):
         self.deck=list()
-
     def createCards(self):
             #For every suit, we have 13 cards : [ACE, 2-10, Jack, Queen, King]
         for suit in self.suits:

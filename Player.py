@@ -5,10 +5,10 @@ from random import randint
 from Chips import Chips
 class Player:
     def __init__(self):
+        self.hasACE = False
         self.bankRole = randint(1,5000)
         self.cardSum=None
         self.bidAmount=None
-    
     def placeBid(self):
         while True:
             try:
