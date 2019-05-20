@@ -25,3 +25,4 @@ class Chips:
         for a,b in self.chipsForBid:
             representation+=b.center(20)
         return representation
+        
