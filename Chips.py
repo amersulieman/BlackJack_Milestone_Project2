@@ -10,7 +10,7 @@ class Chips:
     def calcChips(self,bidAmount):
         #calculate how many chip of each color to give for the bid amount
         for value in self.__gameChips:
-            if bidAmount>value:
+            if bidAmount>=value:
                 chipColor=self.__gameChips[value]
                 numChips = int(bidAmount/value)
                 self.chipsForBid.append((numChips,chipColor))

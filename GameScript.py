@@ -13,16 +13,14 @@ keepPlaying = True
 while keepPlaying:
     gameControl.clearScreen()
     gameCards = pokerCards.deck[:]
-    print("\tYour turn\n********************************")
     myPlayer.moneyOwn()
     myPlayer.placeBid()
     print()
-    firstTWOcards =gameControl.startNewGame(gameCards)
-    #if false it means the two cards the playee has total to 21
-    if firstTWOcards!=True:
+    reached21 = gameControl.startNewGame(gameCards)
+    #if reached21 != True, it means the two cards the player has total to 21
+    if reached21!=True:
         #loop for turns dealer and player
         gameControl.takeTurns(gameCards)    
-        
     if gameControl.replay():
         continue
     else:

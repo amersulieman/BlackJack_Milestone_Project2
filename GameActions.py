@@ -8,7 +8,7 @@ class GameActions:
     __PLAYER=1
     __COMPUTER=2
     def __init__(self,player):
-        self.compHASACE =False
+        self.dealerHasAce =False
         self.computerCardSum=0
         self.player=player
     def startNewGame(self,cards):
@@ -16,28 +16,27 @@ class GameActions:
         self.player.cardSum=0
         self.player.hasACE=False
         self.computerCardSum=0
-        self.compHASACE=False
+        self.dealerHasAce=False
         #computer takes two cards
-        compHiddenCard=self.hit(cards,self.__COMPUTER)
-        print(compHiddenCard)
+        self.hit(cards,self.__COMPUTER)
+        print("*"*45)
         print("\tComputer Cards:")
         print(f"Card 1 ->{self.hit(cards,self.__COMPUTER)}, Card 2 -> HIDDEN")
         #player takes two cards
         print("\n\tYour Cards:")
         print(f"Card 1 ->{self.hit(cards,self.__PLAYER)}, Card 2 ->{self.hit(cards,self.__PLAYER)}")
         print("\tCards sum =",self.player.cardSum)
-        print("*"*30)
-
-        #IF first two cards for player == 21 it measn blackjack or tie, no need to proceed
+        print("*"*45)
+        #IF first two cards for player == 21 it measn blackjack or tie, no need to proceed for other turns
         if self.player.cardSum==21:
             if self.computerCardSum!=21:
                 print("BLACKJACK... YOU WON IMMEDIATELY!!! ")
                 self.player.collectWinnings()
+                self.player.moneyOwn()
                 return True
             else:
                 print("IT IS A TIE.. dealer  has 21 as well! ")
                 return True
-
     def hit(self,gameDeck,whoPlaying):
         newCard = gameDeck.pop()
         if whoPlaying==self.__PLAYER:
@@ -65,7 +64,7 @@ class GameActions:
                 if self.computerCardSum > 10:
                     return 1
                 else:
-                    self.compHASACE=True
+                    self.dealerHasAce=True
                     return 11
         #if card withdrawn is a normal number
         else:
@@ -78,12 +77,13 @@ class GameActions:
     def checkForAceTrouble(self,playing):
         if playing == self.__PLAYER:
             if self.player.hasACE == True and self.player.cardSum>21:
+                #subtract sum added by 10 so ace count as 1 instead of 11
                 self.player.cardSum-=10
                 self.player.hasACE =False
         else:
-            if self.compHASACE==True and self.computerCardSum>21:
+            if self.dealerHasAce==True and self.computerCardSum>21:
                 self.computerCardSum-=10
-                self.compHASACE==False
+                self.dealerHasAce==False
     def userOptions(self,listOfOptions):
         #validate input
         while True:
@@ -150,12 +150,16 @@ class GameActions:
                 self.player.collectWinnings()
             self.player.moneyOwn()
     def takeTurns(self,gameCards):
+        print("\tYour turn\n********************************")
         while True:
             resultPlayer = self.playerTurn(gameCards)
+            #if player bust then no turn for dealer
             if resultPlayer == False:
                 return
+            #if player stil playing then continue
             elif resultPlayer == True:
                 continue
+            #if player stayed then dealer turn
             else:
                 print("\tDealer Turn")
                 print("*"*30)
